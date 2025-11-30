@@ -1,37 +1,48 @@
 {
   "name": "koa_auth_service_ts",
   "version": "1.0.0",
-  "description": "Service with Koa, TypeScript, PostgreSQL, TypeORM",
+  "author": "Roman Dobrynin",
+  "description": "Auth Service with Koa2, TypeScript, PostgreSQL, TypeORM",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/config/database.ts",
+    "migration:create": "typeorm-ts-node-commonjs migration:create",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/database.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/database.ts",
+    "migration:show": "typeorm-ts-node-commonjs migration:show -d src/config/database.ts",
+    "schema:sync": "typeorm-ts-node-commonjs schema:sync -d src/config/database.ts",
+    "schema:drop": "typeorm-ts-node-commonjs schema:drop -d src/config/database.ts"
   },
   "dependencies": {
-    "@koa/cors": "^5.0.0",
-    "bcrypt": "^5.1.1",
-    "dotenv": "^16.3.1",
-    "jsonwebtoken": "^9.0.2",
     "koa": "^2.14.2",
-    "koa-bodyparser": "^4.4.1",
     "koa-router": "^12.0.1",
+    "koa-bodyparser": "^4.4.1",
+    "@koa/cors": "^4.0.0",
+    "typeorm": "^0.3.17",
     "pg": "^8.11.3",
     "redis": "^4.6.10",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "dotenv": "^16.3.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.17"
+    "koa2-swagger-ui": "^5.10.0",
+    "swagger-jsdoc": "^6.2.8"
   },
   "devDependencies": {
+    "@types/koa": "^2.13.12",
+    "@types/koa-router": "^7.4.8",
+    "@types/koa-bodyparser": "^4.3.12",
+    "@types/koa__cors": "^4.0.3",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",
-    "@types/koa": "^2.13.12",
-    "@types/koa__cors": "^4.0.3",
-    "@types/koa-bodyparser": "^4.3.12",
-    "@types/koa-router": "^7.4.8",
     "@types/node": "^20.10.4",
-    "nodemon": "^3.0.2",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "typescript": "^5.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "nodemon": "^3.0.2"
   }
 }

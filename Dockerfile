@@ -2,14 +2,20 @@ FROM node:23-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache bash postgresql-client
+
+ARG PORT=3000
+
 COPY package*.json ./
 
 RUN npm install
 
 COPY . .
 
+RUN chmod +x scripts/run-migrations.sh
+
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE $PORT
 
-CMD ["npm", "start"]
+CMD ["./scripts/run-migrations.sh"]

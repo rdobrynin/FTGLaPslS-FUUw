@@ -27,6 +27,7 @@ export class AuthController {
 
             const hashedPassword = await bcrypt.hash(password, 10);
 
+            // @ts-ignore
             const user = userRepository.create({
                 firstName,
                 lastName,
@@ -98,7 +99,7 @@ export class AuthController {
                 { expiresIn: '24h' }
             );
 
-            // await redisClient.set(`session:${user.id}`, token, { EX: 86400 });
+            await redisClient.set(`session:${user.id}`, token, { EX: 86400 });
 
             const { password: _, ...userWithoutPassword } = user;
 
