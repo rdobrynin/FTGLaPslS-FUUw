@@ -49,6 +49,7 @@ services:
       RUN_APP_AFTER_MIGRATIONS: "true"
     ports:
       - '${PORT}:${PORT}'
+      - '${DEBUG_PORT}:${DEBUG_PORT}'
     depends_on:
       postgres:
         condition: service_healthy
